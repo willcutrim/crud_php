@@ -3,8 +3,8 @@ include_once 'conexao.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];    
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -40,39 +40,38 @@ if (isset($_GET['id'])) {
 <body>
     <div class="container">
         <div id="formulario">
-        <div class="form-div">
-        <div id="titulo">
-            <h1>CRUD basicão</h1>
-        </div>    
-            <form action="" method="post">
-                <div id="areaNome" class="mb-6">
-                    <input type="text" name="nome" placeholder="Nome" class="form-control">
-                </div>
-                <div id="areaIdade">
-                <input type="text" name="dataNascimento" placeholder="Data de Nascimento" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </form>
-        </div>
+            <div class="form-div">
+                <div id="titulo">
+                    <h1>CRUD basicão</h1>
+                </div>    
+                <form action="" method="post">
+                    <div id="areaNome" class="mb-6">
+                        <input type="text" name="nome" placeholder="Nome" class="form-control">
+                    </div>
+                    <div id="areaIdade">
+                        <input type="text" name="dataNascimento" placeholder="Data de Nascimento" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
         </div>
     </div>
-    <?php 
 
-    if(isset($_POST['nome'])){
-        if(empty($_POST['nome']) || empty($_POST['dataNascimento'])){
-            $erro = 'Preencha todos os campos';
-        }else{
-            $nome = $_POST['nome'];
-            $dataNascimento = $_POST['dataNascimento'];
-             $stmt = $pdo->prepare('INSERT INTO mytable (nome, dataNascimento) VALUES(:nome, :dataNascimento)');
-             $stmt->execute(array(
-               ':nome' => $nome,
-               ':dataNascimento'=> $dataNascimento
-             ));
+    <?php 
+        if(isset($_POST['nome'])){
+            if(empty($_POST['nome']) || empty($_POST['dataNascimento'])){
+                $erro = 'Preencha todos os campos';
+            }else{
+                $nome = $_POST['nome'];
+                $dataNascimento = $_POST['dataNascimento'];
+                $stmt = $pdo->prepare('INSERT INTO mytable (nome, dataNascimento) VALUES(:nome, :dataNascimento)');
+                $stmt->execute(array(
+                ':nome' => $nome,
+                ':dataNascimento'=> $dataNascimento
+                ));
             }
         }
-        ?>
-   
+    ?>
 <div id="tabela">
     <table class="table table-striped">
         <thead>
@@ -93,7 +92,7 @@ if (isset($_GET['id'])) {
                 <td><?=$busca['nome']?></td>
                 <td><?=$busca['dataNascimento']?></td>
                 <td>
-                <a class="btn btn-warning btn-sm" href="update.php?id=<?=$busca['id']?>">Editar</a>
+                    <a class="btn btn-warning btn-sm" href="update.php?id=<?=$busca['id']?>">Editar</a>
                     <form method="post" action="index.php?id=<?=$busca['id']?>" class="d-inline">
                         <button type="submit" class="btn btn-danger btn-sm" id="delete">Excluir</button>
                     </form>
@@ -110,7 +109,8 @@ if (isset($_GET['id'])) {
             ":id", $id
         );
         $del->execute();
-    ?><!--
+    ?>
+    <!--
     <script>
         document.getElementById('delete').onclick 
         = function(){

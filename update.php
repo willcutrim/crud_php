@@ -25,10 +25,9 @@ $id = $_GET["id"]
 </head>
 <body>
 <div class="container">
-        <div id="formulario">
+    <div id="formulario">
         <div class="form-div">
-        
-        <h1 id="title">Atualizar dados</h1>
+            <h1 id="title">Atualizar dados</h1>
             <form action="" method="post">
                 <div id="area" class="mb-2">
                     <?php
@@ -55,7 +54,6 @@ $id = $_GET["id"]
             if(empty($_POST['nome']) || empty($_POST['dataNascimento'])){
                 $erro = 'Preencha os campos';
             }else{
-                
                 $nome = $_POST['nome'];
                 $dataNascimento = $_POST['dataNascimento'];
                 if ($id > 0) {
